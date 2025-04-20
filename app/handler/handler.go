@@ -1,9 +1,12 @@
 package handler
 
 import (
+	"golang-vercel/app/models"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func Ping(c *gin.Context) {
@@ -23,4 +26,13 @@ func Ping(c *gin.Context) {
 // @Router      /hello/:name [GET]
 func Hello(c *gin.Context) {
 	c.String(http.StatusOK, "Hello %v", c.Param("name"))
+}
+
+func GetUser(c *gin.Context) {
+	log.Println("executing: GetUser() handler")
+	c.JSON(http.StatusOK, models.User{
+		ID:       uuid.New(),
+		Name:     "John Doe",
+		Username: "johndoe28",
+	})
 }

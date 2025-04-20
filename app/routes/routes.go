@@ -2,13 +2,12 @@ package routes
 
 import (
 	"golang-vercel/app/handler"
+	"net/http"
 
 	_ "golang-vercel/docs"
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,6 +21,7 @@ func Register(app *gin.Engine) {
 	{
 		route.GET("/hello/:name", handler.Hello)
 		route.GET("/doc/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+		route.GET("/users/me", handler.GetUser)
 	}
 }
 
